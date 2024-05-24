@@ -18,10 +18,10 @@ Another option is to use *Postercise* as a local module by downloading the packa
 
 Next you will need to import a theme, set up the page and font, and call the `show` command.
 ```typ
-#import "themes/basic.typ": *
+#import themes.basic: *
 
 #set page(width: 24in, height: 18in)
-#set text(font: "Source Sans Pro", size: 24pt)
+#set text(size: 24pt)
 
 #show: theme
 ```
@@ -103,13 +103,13 @@ Available options for the poster header for most themes include. Due to the smal
 ```
 
 ### `poster-footer[]`
-This command does not currently have any allowed options.
+This command does not currently have any extra options.
 
 ## Known Issues
 - The bibliography does not work properly
 - Figure numbering does not work properly
 
-## Planned Features
+## Planned Features/Themes
 - Themes that use color gradients and background images
-- QR code generation for short links
+- Add QR code generation
 

@@ -1,9 +1,10 @@
 // Import a theme
-#import "themes/better.typ": *
+#import "../postercise.typ": *
+#import themes.better: *
 
 // Set up paper dimensions and text
 #set page(width: 24in, height: 18in)
-#set text(font: "Source Sans Pro", size: 24pt)
+#set text(font: "Calibri", size: 24pt)
 
 // Set up colors
 #show: theme.with()

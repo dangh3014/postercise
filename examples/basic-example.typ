@@ -1,10 +1,10 @@
 // Import a theme
 #import "../postercise.typ": *
-#import themes.boxes: *
+#import themes.basic: *
 
 // Set up paper dimensions and text
 #set page(width: 24in, height: 18in)
-#set text(font: "Calibri", size: 28pt)
+#set text(size: 28pt)
 
 // Set up colors
 #show: theme.with()
@@ -22,7 +22,7 @@
 
   // Include content in the footer
   #poster-footer[
-    #set text(fill: black)
+    #set text(fill: white)
     _Additional information_
     ]
 

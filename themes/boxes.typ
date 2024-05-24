@@ -117,7 +117,15 @@
       let current-affiliation = context affiliation-content.get()
       let current-logo-1 = context logo-1-content.get()
       let current-logo-2 = context logo-2-content.get()
-      let current-footer = context footer-content.get() 
+      let current-footer = context footer-content.get()
+
+      // Table captions go above
+      // TO DO: Numbering is not working properly
+      show figure.where(kind:table) : set figure.caption(position:top)
+      show figure.caption: it => [
+        // #context it.counter.display(it.numbering)
+        #it.body
+      ] 
       
       // First, need body (hidden) to update header and footer
       block(height: 0pt, hide[#body])
