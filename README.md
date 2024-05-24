@@ -9,12 +9,12 @@
 
 ## Getting started
 
-You can get *Postercise* from the official package repository by entering the following.
+You can get **Postercise** from the official package repository by entering the following.
 ```typ
 #import "@preview/postercise:0.1.0": *
 ```
 
-Another option is to use *Postercise* as a local module by downloading the package files into your project folder.
+Another option is to use **Postercise** as a local module by downloading the package files into your project folder.
 
 Next you will need to import a theme, set up the page and font, and call the `show` command.
 ```typ
@@ -51,7 +51,6 @@ Basic information like title and authors is placed as options using the `poster-
 ```
 
 
-
 Finally, additional content can be added to the footer with the `poster-footer` script.
 ```typ
 #poster-footer[]
@@ -59,9 +58,12 @@ Finally, additional content can be added to the footer with the `poster-footer` 
 
 Again, as a reminder, all of these scripts should be called from inside of the `poster-content` block.
 
+Using these commands, it is easy to produce posters like the following:
+![Examples](https://github.com/dangh3014/postercise/blob/main/examples/postercise-examples.png)
+
 ## More details
 ### `themes`
-Currently, 3 themes are available.
+Currently, 3 themes are available. Use one of these `import` commands to load that theme.
 ```typ
 #import themes.basic: *
 #import themes.better: *
@@ -91,8 +93,13 @@ The only option for the main content is the number of columns. This defaults to 
 ### `normal-box()[]` and `focus-box()[]`
 By default, these boxes use the no fill and the accent-color fill, respectively. However, they do accept color as an option, and will add a primary-color stroke around the box if a color is given. For the "better.typ" theme, use `focus-box` to place content in the center column.
 ```typ
-#normal-box(color: none)[// Content]
-#focus-box(color: none)[// Content]
+#normal-box(color: none)[
+  // Content
+]
+
+#focus-box(color: none)[
+  // Content
+]
 ```
 
 
@@ -112,12 +119,14 @@ Available options for the poster header for most themes are shown below. Note th
 ### `poster-footer[]`
 This command does not currently have any extra options. The content is typically placed at the bottom of the poster, but it is placed in the rightmost column for the "better.typ" theme.
 ```typ
-#poster-footer[// Content]
+#poster-footer[
+  // Content
+]
 ```
 
 ## Known Issues
-- The bibliography does not work properly
-- Figure numbering does not work properly
+- The bibliography does not work properly and must be done manually
+- Figure captions do not number correctly and must be done manually
 
 ## Planned Features/Themes
 - Themes that use color gradients and background images
