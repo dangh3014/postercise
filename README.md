@@ -60,9 +60,16 @@ Finally, additional content can be added to the footer with the `poster-footer` 
 Again, as a reminder, all of these scripts should be called from inside of the `poster-content` block.
 
 ## More details
+### `themes`
+Currently, 3 themes are available.
+```typ
+#import themes.basic: *
+#import themes.better: *
+#import themes.boxes: *
+```
 
 ### `show: theme.with()`
-Theme options allow you to adjust the color scheme, as well as the color and size of the content in the header. The defaults are shown below.
+Theme options allow you to adjust the color scheme, as well as the color and size of the content in the header. The defaults are shown below. (The 'better.typ' theme defaults to different titletext color and size.)
 ```typ
 #show: theme.with(
   primary-color: rgb(28,55,103), // Dark blue
@@ -74,7 +81,7 @@ Theme options allow you to adjust the color scheme, as well as the color and siz
 ```
 
 ### `poster-content()[]`
-The only option for the main content is the number of columns. This defaults to 3 for most themes, and 1 for the "better.typ" theme.
+The only option for the main content is the number of columns. This defaults to 3 for most themes. For the "better.typ" theme, there is 1 column and content is placed in the leftmost column.
 ```typ
 #poster-content(col: 3)[
   // Content goes here
@@ -82,7 +89,7 @@ The only option for the main content is the number of columns. This defaults to 
 ```
 
 ### `normal-box()[]` and `focus-box()[]`
-By default, these boxes use the no fill and the accent-color fill, respectively. However, they do accept color as an option, and will add a primary-color stroke around the box if a color is given.
+By default, these boxes use the no fill and the accent-color fill, respectively. However, they do accept color as an option, and will add a primary-color stroke around the box if a color is given. For the "better.typ" theme, use `focus-box` to place content in the center column.
 ```typ
 #normal-box(color: none)[]
 #focus-box(color: none)[]
@@ -90,7 +97,7 @@ By default, these boxes use the no fill and the accent-color fill, respectively.
 
 
 ### `poster-header()`
-Available options for the poster header for most themes include. Due to the small header footprint in the "better.typ" theme, logos are not currently displayed there.
+Available options for the poster header for most themes include. Note that logos should be explicitly labeled as images. Logos are not currently displayed in the "better.typ" theme.
 ```typ
 #poster-header(
   title: [Title],
@@ -103,7 +110,7 @@ Available options for the poster header for most themes include. Due to the smal
 ```
 
 ### `poster-footer[]`
-This command does not currently have any extra options.
+This command does not currently have any extra options. The content is typically placed at the bottom of the poster, but it is placed in the rightmost column for the "better.typ" theme.
 
 ## Known Issues
 - The bibliography does not work properly
