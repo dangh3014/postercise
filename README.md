@@ -46,7 +46,7 @@ Basic information like title and authors is placed as options using the `poster-
 ```typ
 #poster-header(
   title: [Title],
-  author: [Author],
+  authors: [Author],
 )
 ```
 
@@ -81,7 +81,7 @@ Theme options allow you to adjust the color scheme, as well as the color and siz
 ```
 
 ### `poster-content()[]`
-The only option for the main content is the number of columns. This defaults to 3 for most themes. For the "better.typ" theme, there is 1 column and content is placed in the leftmost column.
+The only option for the main content is the number of columns. This defaults to 3 for most themes. For the "better.typ" theme, there is 1 column and content is placed in the leftmost column below `poster-header`.
 ```typ
 #poster-content(col: 3)[
   // Content goes here
@@ -91,13 +91,13 @@ The only option for the main content is the number of columns. This defaults to 
 ### `normal-box()[]` and `focus-box()[]`
 By default, these boxes use the no fill and the accent-color fill, respectively. However, they do accept color as an option, and will add a primary-color stroke around the box if a color is given. For the "better.typ" theme, use `focus-box` to place content in the center column.
 ```typ
-#normal-box(color: none)[]
-#focus-box(color: none)[]
+#normal-box(color: none)[// Content]
+#focus-box(color: none)[// Content]
 ```
 
 
 ### `poster-header()`
-Available options for the poster header for most themes include. Note that logos should be explicitly labeled as images. Logos are not currently displayed in the "better.typ" theme.
+Available options for the poster header for most themes are shown below. Note that logos should be explicitly labeled as images. Logos are not currently displayed in the header in the "better.typ" theme.
 ```typ
 #poster-header(
   title: [Title],
@@ -111,6 +111,9 @@ Available options for the poster header for most themes include. Note that logos
 
 ### `poster-footer[]`
 This command does not currently have any extra options. The content is typically placed at the bottom of the poster, but it is placed in the rightmost column for the "better.typ" theme.
+```typ
+#poster-footer[// Content]
+```
 
 ## Known Issues
 - The bibliography does not work properly
