@@ -1,6 +1,6 @@
 # Postercise
 
-*Postercise* allows users to easily create academic research posters with different themes using [Typst](https://typst.app).
+**Postercise** allows users to easily create academic research posters with different themes using [Typst](https://typst.app).
 
 ![GitHub](https://img.shields.io/github/license/dangh3014/postercise)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/dangh3014/postercise)
