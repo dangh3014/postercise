@@ -5,8 +5,7 @@
   color: none, 
   body
 ) = {
-    locate(loc =>     
-    {
+    context {
       let primary-color = color-primary.get()
       show heading: it => [
                             #block(width: 100%, height: 1em,
@@ -47,7 +46,7 @@
           ]
         )
       ]
-  })
+  }
 }
 
 
@@ -55,8 +54,7 @@
   color: none, 
   body
 ) = {
-    locate(loc =>     
-    {
+    context {     
       let primary-color = color-primary.get()
       // show heading: set text(fill: primary-color)
       show heading: it => [
@@ -99,7 +97,7 @@
           ]
         )
       ]
-  })
+  }
 }
 
 
@@ -107,8 +105,7 @@
   col: 3, 
   body
 )={
-    locate(loc =>     
-    {
+    context {
       let primary-color = color-primary.get()
       let bg-color = color-background.get()
       let titletext-color = color-titletext.get()
@@ -123,15 +120,28 @@
       let current-footer = context footer-content.get()
 
       // Table captions go above
-      // TO DO: Numbering is not working properly
-      show figure.where(kind:table) : set figure.caption(position:top)
-      show figure.caption: it => [
-        // #context it.counter.display(it.numbering)
-        #it.body
+      show figure.where(kind: table): set figure(supplement: "Tab.")
+      show figure.where(kind: table): set figure.caption(
+        position: top,
+      )
+      set figure(supplement: "Fig.")
+      show figure.caption: it => context [
+        _#it.supplement~#it.counter.display(it.numbering)#it.separator#it.body _
       ]
-      
+
       // Need to call body (hidden) to update header and footer
-      block(height: 0pt, hide[#body])
+      block(
+        height: 0pt, 
+        [
+          #current-title
+          #current-subtitle
+          #current-author
+          #current-affiliation
+          #current-logo-1
+          #current-logo-2
+          #current-footer
+        ]
+      )
       v(0pt, weak: true)
       
       grid(
@@ -199,6 +209,5 @@
           )
         ]
       )
-      
-    })
+    }
 }

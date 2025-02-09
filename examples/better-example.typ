@@ -50,7 +50,7 @@
     #lorem(10)
     
     #figure(image("placeholder.png", width: 50%),
-    caption: [_Fig. 1: Sample Results_])
+    caption: [Sample Results])
     ]
 
   // Focus-box is used for the main findings

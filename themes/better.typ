@@ -41,8 +41,7 @@ https://osf.io/ef53g/
   color: none, 
   body
 ) = {
-    locate(loc =>     
-    {
+    context {
       let primary-color = color-primary.get()
       let accent-color = color-accent.get()
       if color != none [
@@ -74,7 +73,7 @@ https://osf.io/ef53g/
           ]
         )
       ]
-  })
+  }
 }
 
 
@@ -93,8 +92,7 @@ https://osf.io/ef53g/
   
   body
 )={
-    locate(loc =>     
-    {
+    context {
       let edge-color = color-background.get()
       let center-color = color-primary.get()
       let titletext-color = color-titletext.get()
@@ -108,15 +106,25 @@ https://osf.io/ef53g/
       let current-footer = context footer-content.get()
 
       // Table captions go above
-      // TO DO: Numbering is not working properly
-      show figure.where(kind:table) : set figure.caption(position:top)
-      show figure.caption: it => [
-        // #context it.counter.display(it.numbering)
-        #it.body
-      ]
-
-      // First, need body (hidden) to update header and footer
-      block(height: 0pt, hide[#body])
+      show figure.where(kind: table): set figure(supplement: "Tab.")
+      show figure.where(kind: table): set figure.caption(
+        position: top,
+      )
+      set figure(supplement: "Fig.")
+      show figure.caption: it => context [
+        _#it.supplement~#it.counter.display(it.numbering)#it.separator#it.body _
+      ]    
+      
+      // Need to call body (hidden) to update header and footer
+      block(height: 0pt, 
+        [
+          #current-title
+          #current-subtitle
+          #current-author
+          #current-affiliation
+          #current-footer
+        ]
+      )
       v(0pt, weak: true)
       
       
@@ -199,6 +207,6 @@ https://osf.io/ef53g/
         ]
       )
       
-    })
+    }
 }
 
