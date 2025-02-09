@@ -39,21 +39,21 @@
     $ gamma = 1/2 alpha beta^2 $
     #lorem(15)
     #figure(image("placeholder.png", width: 50%),
-    caption: [_Fig. 1: Sample Figure_])
+    caption: [Sample Figure])
     ]
 
   #normal-box()[
     = Results
     #lorem(20)
     #figure(image("placeholder.png", width: 50%),
-    caption: [_Fig. 2: Sample Results_])
+    caption: [Sample Results])
     #lorem(20)
     #figure(table(columns: 3, 
                   rows: 2,
                   fill: white, stroke: 0.0625em,
                   [*a*], [*b*], [*c*],
                   [1], [2], [3]),
-        caption: [_Table 1: Sample Table_])
+        caption: [Sample Table])
     ]
     #lorem(20)
 
