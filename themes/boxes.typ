@@ -5,15 +5,14 @@
   color: none, 
   body
 ) = {
-    locate(loc =>     
-    {
-      let primary-color = color-primary.get()
-      show heading: set text(white)
-      show heading: set align(center+horizon)
-      show heading: set block(width: 108.696%, 
+    context[
+      #let primary-color = color-primary.get()
+      #show heading: set text(white)
+      #show heading: set align(center+horizon)
+      #show heading: set block(width: 108.696%, 
                               height: 1.2em, 
                               fill: primary-color)
-      if color != none [
+      #if color != none [
         // Overwrite the color if provided
         #let focus-color = color
         #box(
@@ -43,7 +42,7 @@
           ]
         )
       ]
-  })
+    ]
 }
 
 
@@ -51,19 +50,18 @@
   color: none, 
   body
 ) = {
-    locate(loc =>     
-    {
-      let primary-color = color-primary.get()
-      show heading: set text(white)
-      show heading: set align(center+horizon)
-      show heading: set block(width: 108.696%, 
+    context[
+      #let primary-color = color-primary.get()
+      #show heading: set text(white)
+      #show heading: set align(center+horizon)
+      #show heading: set block(width: 108.696%, 
                               height: 1.2em,
                               // stroke: primary-color,
                               fill: primary-color,
                               )
 
       
-      if color != none [
+      #if color != none [
         // Overwrite the default if provided
         #let focus-color = color
         #box(
@@ -93,7 +91,7 @@
           ]
         )
       ]
-  })
+    ]
 }
 
 
@@ -104,34 +102,42 @@
   col: 3, 
   body
 )={
-    locate(loc =>     
-    {
-      let primary-color = color-primary.get()
-      let bg-color = color-background.get()
-      let titletext-color = color-titletext.get()
-      let titletext-size = size-titletext.get()
+    context[
+      #let primary-color = color-primary.get()
+      #let bg-color = color-background.get()
+      #let titletext-color = color-titletext.get()
+      #let titletext-size = size-titletext.get()
 
-      let current-title = context title-content.get()
-      let current-subtitle = context subtitle-content.get()
-      let current-author = context author-content.get()
-      let current-affiliation = context affiliation-content.get()
-      let current-logo-1 = context logo-1-content.get()
-      let current-logo-2 = context logo-2-content.get()
-      let current-footer = context footer-content.get()
+      #let current-title = context title-content.get()
+      #let current-subtitle = context subtitle-content.get()
+      #let current-author = context author-content.get()
+      #let current-affiliation = context affiliation-content.get()
+      #let current-logo-1 = context logo-1-content.get()
+      #let current-logo-2 = context logo-2-content.get()
+      #let current-footer = context footer-content.get()
 
       // Table captions go above
-      // TO DO: Numbering is not working properly
-      show figure.where(kind:table) : set figure.caption(position:top)
-      show figure.caption: it => [
+      #show figure.where(kind:table) : set figure.caption(position:top)
+      #show figure.caption.where(kind:image): it => [
         // #context it.counter.display(it.numbering)
+        // Since the #body is called twice, subtract half of the total figures to get the correct number
+        Fig.
+        #let last-counter = it.counter.final()
+        #context {it.counter.get().at(0) - last-counter.at(0)/2}:
         #it.body
-      ] 
+      ]
+      #show figure.caption.where(kind:table): it => [
+        Table
+        #let last-counter = it.counter.final()
+        #context {it.counter.get().at(0) - last-counter.at(0)/2}:
+        #it.body
+      ]
       
       // First, need body (hidden) to update header and footer
-      block(height: 0pt, hide[#body])
-      v(0pt, weak: true)
+      #block(height: 0pt, hide[#body])
+      #v(0pt, weak: true)
       
-      grid(
+      #grid(
         columns: 1,
         rows: (16%, 80%, 4%),
         
@@ -199,9 +205,10 @@
             inset: 4%,
 
             align(right)[#current-footer]
+            // align(right)[#bibliography()]
           )
         ]
       )
       
-    })
+    ]
 }
