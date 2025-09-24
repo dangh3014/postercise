@@ -41,11 +41,10 @@ https://osf.io/ef53g/
   color: none, 
   body
 ) = {
-    locate(loc =>     
-    {
-      let primary-color = color-primary.get()
-      let accent-color = color-accent.get()
-      if color != none [
+    context[
+      #let primary-color = color-primary.get()
+      #let accent-color = color-accent.get()
+      #if color != none [
         #let accent-color = color
         #box(
           stroke: none, //primary-color+0.2em, 
@@ -74,7 +73,7 @@ https://osf.io/ef53g/
           ]
         )
       ]
-  })
+  ]
 }
 
 
@@ -93,34 +92,42 @@ https://osf.io/ef53g/
   
   body
 )={
-    locate(loc =>     
-    {
-      let edge-color = color-background.get()
-      let center-color = color-primary.get()
-      let titletext-color = color-titletext.get()
-      let titletext-size = size-titletext.get()
+    context[
+      #let edge-color = color-background.get()
+      #let center-color = color-primary.get()
+      #let titletext-color = color-titletext.get()
+      #let titletext-size = size-titletext.get()
 
-      let current-title = context title-content.get()
-      let current-subtitle = context subtitle-content.get()
-      let current-author = context author-content.get()
-      let current-affiliation = context affiliation-content.get()
-      let current-focus = context focus-content.get()
-      let current-footer = context footer-content.get()
+      #let current-title = context title-content.get()
+      #let current-subtitle = context subtitle-content.get()
+      #let current-author = context author-content.get()
+      #let current-affiliation = context affiliation-content.get()
+      #let current-focus = context focus-content.get()
+      #let current-footer = context footer-content.get()
 
       // Table captions go above
-      // TO DO: Numbering is not working properly
-      show figure.where(kind:table) : set figure.caption(position:top)
-      show figure.caption: it => [
+      #show figure.where(kind:table) : set figure.caption(position:top)
+      #show figure.caption.where(kind:image): it => [
         // #context it.counter.display(it.numbering)
+        // Since the #body is called twice (+1?), subtract half of the total figures to get the correct number
+        Fig.
+        #let last-counter = it.counter.final()
+        #context {it.counter.get().at(0) - (last-counter.at(0)-1)/2}:
+        #it.body
+      ]
+      #show figure.caption.where(kind:table): it => [
+        Table
+        #let last-counter = it.counter.final()
+        #context {it.counter.get().at(0) - (last-counter.at(0)-1)/2}:
         #it.body
       ]
 
       // First, need body (hidden) to update header and footer
-      block(height: 0pt, hide[#body])
-      v(0pt, weak: true)
+      #block(height: 0pt, hide[#body])
+      #v(0pt, weak: true)
       
       
-      grid(
+      #grid(
         columns: (12.5/52*100%, 28.5/52*100%, 11/52*100%),
         rows: (100%),
         
@@ -199,6 +206,5 @@ https://osf.io/ef53g/
         ]
       )
       
-    })
+    ]
 }
-
