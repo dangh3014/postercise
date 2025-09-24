@@ -1,6 +1,6 @@
 [package]
 name = "postercise"
-version = "0.1.0"
+version = "0.2.0"
 entrypoint = "postercise.typ"
 authors = ["Daniel King"]
 license = "MIT"
