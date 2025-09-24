@@ -11,7 +11,7 @@
 
 You can get **Postercise** from the official package repository by entering the following.
 ```typ
-#import "@preview/postercise:0.1.0": *
+#import "@preview/postercise:0.2.0": *
 ```
 
 Another option is to use **Postercise** as a local module by downloading the package files into your project folder.
@@ -126,9 +126,4 @@ This command does not currently have any extra options. The content is typically
 
 ## Known Issues
 - The bibliography does not work properly and must be done manually
-- Figure captions do not number correctly and must be done manually
-
-## Planned Features/Themes
-- Themes that use color gradients and background images
-- Add QR code generation
 
